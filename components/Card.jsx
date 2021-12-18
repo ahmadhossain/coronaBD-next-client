@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react'
 import Skeleton from './Skeleton';
 
-function Card() {
+function Card({users}) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const url = "https://disease.sh/v3/covid-19/countries/BD";
@@ -12,8 +12,9 @@ function Card() {
         <div className="flex-col divide-y-2 px-7 py-7 space-y-3 shadow-xl rounded-2xl bg-white">
             <div className="divide-y-2 pl-20 pr-5 space-y-3">
                 <div className="text-right">
-                    <div className="text-fuchsia-900 text-6xl md:text-7xl">{data.todayCases}</div>
+                    <div className="text-fuchsia-900 text-6xl md:text-7xl">{users}</div>
                     <div className="text-gray-600 text-lg md:text-xl">New Cases</div>
+                    {/* {console.log(posts)} */}
                 </div>
                 <div className="text-right">
                     <div className="text-red-500 text-6xl md:text-7xl">{data.todayDeaths}</div>
@@ -34,15 +35,18 @@ function Card() {
         </div> )
     )
 }
+export async function getStaticProps(context) {
+
+  const res = await fetch('https://disease.sh/v3/covid-19/countries/BD')
+  const data = await res.json()
+  console.log(data)
+
+  return {
+    props: {
+      users: data,
+    },
+  }
+}
 
 export default Card;
 
-export async function getStaticProps() {
-    const response = await fetch('https://disease.sh/v3/covid-19/countries/BD')
-    const data = response.json();
-    console.log(data);
-
-    return {
-        
-    }
-}

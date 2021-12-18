@@ -12,7 +12,7 @@ function Card({users}) {
         <div className="flex-col divide-y-2 px-7 py-7 space-y-3 shadow-xl rounded-2xl bg-white">
             <div className="divide-y-2 pl-20 pr-5 space-y-3">
                 <div className="text-right">
-                    <div className="text-fuchsia-900 text-6xl md:text-7xl">{users.todaycases}</div>
+                    <div className="text-fuchsia-900 text-6xl md:text-7xl">{users.todayCases}</div>
                     <div className="text-gray-600 text-lg md:text-xl">New Cases</div>
                 </div>
                 <div className="text-right">
